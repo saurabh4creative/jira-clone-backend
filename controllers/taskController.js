@@ -2,7 +2,9 @@ const Task = require("../models/Task");
 
 const createTask = async (req, res, next) => {
      try {
+          const userId  = req.user.id;
           const payload = req.body;
+          payload.reporter = userId;
           const task = await Task.create(payload);
 
           if (task) {
